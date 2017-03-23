@@ -11,6 +11,7 @@ echo "-----> setting PATHS for LIBSPATIALINDEX"
 mkdir -p .profile.d
 cat << EOF > .profile.d/spindex.sh
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/vendor/libspatialindex/usr/local/lib
+export SPATIALINDEX_C_LIBRARY=libspatialindex_c.so.4
 EOF
 
 echo "-----> oki"
