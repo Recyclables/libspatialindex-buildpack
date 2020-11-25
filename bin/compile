@@ -6,11 +6,12 @@ curl http://download.osgeo.org/libspatialindex/spatialindex-src-1.8.5.tar.gz -O 
 mkdir -p vendor/libspatialindex
 tar -C vendor/libspatialindex -xf spatialindex-src-1.8.5.tar.gz
 rm spatialindex-src-1.8.5.tar.gz
-cd vendor/libspatialindex/spatialindex-src-1.8.5
-./configure; make; make install
-python setup.py install
 
-
+echo "-----> setting PATHS for LIBSPATIALINDEX"
+mkdir -p .profile.d
+cat << EOF > .profile.d/spindex.sh
+export LD_LIBRARY_PATH=/app/vendor/libspatialindex/usr/local/lib:$LD_LIBRARY_PATH
+export SPATIALINDEX_C_LIBRARY=libspatialindex_c.so.4
 EOF
 
 echo "-----> oki"
