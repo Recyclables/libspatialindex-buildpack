@@ -12,4 +12,4 @@ export LD_LIBRARY_PATH=/app/vendor/libspatialindex/usr/local/lib:$LD_LIBRARY_PAT
 export SPATIALINDEX_C_LIBRARY=libspatialindex_c.so.4
 EOF
 
-echo "-----> LIBSPATIALINDEX done"
+echo "-----> LIBSPATIALINDEX done and PATH set"
