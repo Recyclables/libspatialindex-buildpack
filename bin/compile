@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
-cd $1
+BUILD_DIR=$1
 
 echo "-----> Installing LIBSPATIALINDEX"
 curl https://s3-eu-west-1.amazonaws.com/selectively-maphotopro/spindex.tar.gz -O -s
-mkdir -p vendor/libspatialindex
-tar -C vendor/libspatialindex -xf spindex.tar.gz
+mkdir -p "$BUILD_DIR/vendor/libspatialindex"
+tar -C "$BUILD_DIR/vendor/libspatialindex" -xf spindex.tar.gz
 rm spindex.tar.gz
 
 echo "-----> setting PATHS for LIBSPATIALINDEX"
-export LD_LIBRARY_PATH=/app/vendor/libspatialindex/usr/local/lib:$LD_LIBRARY_PATH
-export SPATIALINDEX_C_LIBRARY=libspatialindex_c.so.4
-EOF
+PROFILE_PATH="$BUILD_DIR/.profile.d/spindex.sh"
+mkdir -p "$(dirname "$PROFILE_PATH")"
+{
+  echo 'export SPATIALINDEX_C_LIBRARY="libspatialindex_c.so.4"'
+  echo 'export LD_LIBRARY_PATH="$HOME/vendor/libspatialindex/usr/local/lib:$LD_LIBRARY_PATH"'
+} >> "$PROFILE_PATH"
 
 echo "-----> LIBSPATIALINDEX done and PATH set"
