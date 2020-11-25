@@ -8,9 +8,7 @@ tar -C vendor/libspatialindex -xf spindex.tar.gz
 rm spindex.tar.gz
 
 echo "-----> setting PATHS for LIBSPATIALINDEX"
-mkdir -p .profile.d
-cat << EOF > .profile.d/spindex.sh
-export LD_LIBRARY_PATH="/app/vendor/libspatialindex/usr/local/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH=/app/vendor/libspatialindex/usr/local/lib:$LD_LIBRARY_PATH
 export SPATIALINDEX_C_LIBRARY=libspatialindex_c.so.4
 EOF
 
